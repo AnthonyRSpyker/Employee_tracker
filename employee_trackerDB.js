@@ -34,7 +34,6 @@ const options = () => {
                 'View department',
                 'View roles',
                 'View Employees',
-                
                 'Add employee',
                 'Remove employee',
                 'Update employee role',
@@ -129,7 +128,7 @@ const addEmployee = () => {
                 if (err) throw err;
                     console.log("s'all good!")
                     options();
-            })
+            });
 
     });
 };    
@@ -137,16 +136,16 @@ const addEmployee = () => {
 const allEmployees = () => {
     const query = 'SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name as department_name, employee.manager_id FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee employee_w_manager on employee_w_manager.manager_id = employee.id'
     connection.query(query, (err,res) => {
-        //res.forEach(({ id, first_name, last_name, title, salary, department, manager }))
+        
         console.table(res);
         options();
-    })
+    });
 };
 
 const updateEmployeeRole = () => {
     inquirer.prompt([
         {
-            name: 'rolereversal',
+            name: 'empId',
             type: 'input',
             message: 'What is the employee id you want to change?'
         },
@@ -158,57 +157,43 @@ const updateEmployeeRole = () => {
         }
     ])
     .then((answer) => {
-    'UPDATE employee SET role_id = ? WHERE id = ?',
         connection.query(
-    {
-        role_id: answer.roleid,
-        id: answer.rolereversal
-    },
+            'UPDATE employee SET role_id = ? WHERE id = ?',
+        [
+        answer.roleid,
+        answer.empId
+        ],
     
     (err) => {
         if (err) throw err;
             console.log("s'all good!")
             options();
-    })
-    })
-}
+        });
+    });
+};
 
 
 
 const viewDepartment = () => {
-    // inquirer.prompt([
-    //     {
-    //         name: 'department',
-    //         type: 'input',
-    //         message: 'What is the name of department you are looking for?'
-    //     }
-    // ])
-    // .then((answer) => {
+    
         const query = 'SELECT * FROM department'
         connection.query(query, (err,res) => {
-            //res.forEach(({ id, first_name, last_name, title, salary, department, manager }))
+            
             console.table(res);
             options();
         })
-    // })
+    
 };
 
 const viewRole = () => {
-    // inquirer.prompt([
-    //     {
-    //         name: 'role',
-    //         type: 'input',
-    //         message: 'What is the name of department you are looking for?'
-    //     }
-    // ])
-    // .then((answer) => {
+    
         const query = 'SELECT * FROM role'
         connection.query(query, (err,res) => {
-            //res.forEach(({ id, first_name, last_name, title, salary, department, manager }))
+            
             console.table(res);
             options();
         })
-        // })
+        
 };
 
 const viewEmployees = () => {
@@ -230,9 +215,9 @@ const deleteEmployee = () => {
     .then((answer) => {
         const query = 'DELETE FROM employee WHERE id = ?'
         connection.query(query, 
-            {
-                id: answer.deleteempoloyee
-            },
+            [
+                answer.deleteempoloyee
+            ],
             (err) => {
                 if (err) throw err;
                 console.log("s'all good!")
