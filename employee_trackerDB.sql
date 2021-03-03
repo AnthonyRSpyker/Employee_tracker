@@ -30,3 +30,20 @@ CREATE TABLE employee(
     FOREIGN KEY (manager_id) REFERENCES employee(id)
 )
 
+
+SELECT 
+    role.id,
+    employee.first_name,
+    employee.last_name,
+    role.title,
+    role.salary,
+    department.name as department_name,
+    employee.manager_id
+FROM
+    employee
+        LEFT JOIN
+    role ON employee.role_id = role.id
+		LEFT JOIN
+	department ON role.department_id = department.id
+		LEFT JOIN
+	employee employee_w_manager on employee_w_manager.manager_id = employee.id
