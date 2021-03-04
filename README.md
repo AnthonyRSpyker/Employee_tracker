@@ -20,6 +20,9 @@
   
   ![this is the hompage of the website](/assets/two.png)
   
+  In the second image we see the first 6 options that can be chossen including view all employees and ifo, view department, view roles, view employees, add employee remove employee. Similarly in the next image we see the next 6 options
+  
+  ![this is the hompage of the website](/assets/two.five.png)
   
  
   
