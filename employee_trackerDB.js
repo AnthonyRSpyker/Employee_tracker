@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
   user: 'root',
 
   // Be sure to update with your own MySQL password!
-  password: '',
+  password: 'GanGBu2ter$',
   database: 'employee_trackerDB',
 });
 
@@ -37,8 +37,10 @@ const options = () => {
                 'Add Employee',
                 'Remove employee',
                 'Update employee role',
+                'Add Department',
                 'Delete Department',
-                // 'Add Department',
+                'Add Role',
+                'Delete Role',
                 'Exit'
             ],
     })
@@ -87,6 +89,16 @@ const options = () => {
             case 'Add Department':
                 addDepartment();
     
+                break;
+                
+            case 'Add Role':
+                addRole();
+        
+                break;
+                
+            case 'Delete Role':
+                deleteRole();
+            
                 break;
 
             case 'Exit':
@@ -144,6 +156,63 @@ const addEmployee = () => {
 
     });
 };    
+const addDepartment = () => {
+    inquirer.prompt([
+    {
+        name: 'department',
+        type: 'input',
+        message: 'What Department would you like to add?'
+    },
+])
+    .then((answer) => {
+        connection.query(
+            'INSERT INTO department SET ?',
+            {
+                name: answer.department
+            },
+
+            (err) => {
+                if (err) throw err;
+                    console.log("s'all good!")
+                    options();
+            });
+    })
+}
+
+const addRole = () => {
+    inquirer.prompt([
+    {
+        name: 'role',
+        type: 'input',
+        message: 'What role would you like to add?'
+    },
+    {
+        name: 'salary',
+        type: 'input',      
+        message: 'What is there salary?'
+    },
+    {
+        name: 'department_id',
+        type: 'input',
+        message: 'What is there department id.'
+    }
+])
+    .then((answer) => {
+        connection.query(
+            'INSERT INTO role SET ?',
+            {
+                title: answer.role,
+                salary: answer.salary,
+                department_id: answer.department_id
+            },
+
+            (err) => {
+                if (err) throw err;
+                    console.log("s'all good!")
+                    options();
+            });
+    })
+}
 
 const allEmployees = () => {
     const query = 'SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name as department_name, employee.manager_id FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee employee_w_manager on employee_w_manager.manager_id = employee.id'
@@ -262,7 +331,28 @@ const deleteEmployee = () => {
         }
     
     
-    
+        const deleteRole = () => {
+            inquirer.prompt([
+                {
+                    name: 'deleterole',
+                    type: 'input',
+                    message: 'What is the role id you want to delete?'
+                }
+            ])
+            .then((answer) => {
+                const query = 'DELETE FROM role WHERE id = ?'
+                connection.query(query, 
+                    [
+                        answer.deleterole
+                    ],
+                    (err) => {
+                        if (err) throw err;
+                        console.log("s'all good!")
+                        options();
+                    })
+                });
+            }
+        
     // const addDepartment = () => {
     //     inquirer.prompt([
     //         {
