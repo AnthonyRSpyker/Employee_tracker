@@ -20,18 +20,32 @@
   
   ![this is the hompage of the website](/assets/two.png)
   
-  In the second image we see the first 6 options that can be chossen including view all employees and ifo, view department, view roles, view employees, add employee remove employee. Similarly in the next image we see the next 6 options
+  In the second image we see the first 6 options that can be chossen including view all employees and ifo, view department, view roles, view employees, add employee remove employee. Similarly in the next image we see the next 6 options including update employee role, add department, delete department, add role, delete role and exit.
   
   ![this is the hompage of the website](/assets/two.five.png)
   
+    The first item is selected on the next screen and a table is displayed that combines all three of the tables, the employee table, the roles table and the department tabel.  The next two options would display each of the tables independintly but will not be looked at here.
+  
   ![this is the hompage of the website](/assets/three.png)
+  
+    The next image shows that the 'add employee' option was selected, option 5, and the first prompt is pulled up.
   ![this is the hompage of the website](/assets/four.png)
+  
+    Next, the image shows all of the prompts filled out with information.
   ![this is the hompage of the website](/assets/five.png)
+    
+    Once the table is selected to view, with option 4, we see that the new employee was added to the list.
   ![this is the hompage of the website](/assets/six.png)
+  
+    When option 6 is selected to remove employee, the user is prompted with what id they would like to delete.  
   ![this is the hompage of the website](/assets/seven.png)
+  
+    Finally we see that the employee was deleted from the employees table.
   ![this is the hompage of the website](/assets/eight.png)
   
- 
+    This feature of adding and removing works for the role table as well as the department table.  The user is asked to select the id that they want to delete, this ensures a specification and accuracy of the table item the user wants to get rid of.
+    
+    One other option that wasnt looked at was the change employee role option.  This allows the user to change the role that the employee is assigned in case of demotions or premotions.  The user is allowed to also change the salary and department id there of.
   
   
   
@@ -53,3 +67,7 @@
   - package-lock.json
   - package.json 
   - seed.sql
+
+# Thank you
+
+  Thank you so much for checking out my app and the repository.  If you have any questions, dont be affraid to email me or if you are interested in making any changes or additions please feel free to make a pull request.  
