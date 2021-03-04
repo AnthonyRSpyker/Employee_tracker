@@ -16,9 +16,9 @@
   
   Once in the repository run the screen will look like this.
   
-  ![This is what the innitial code line looks like](/images/one.png)
+  ![This is what the innitial code line looks like](/assets/one.png)
   
-  ![this is the hompage of the website](/images/two.png)
+  ![this is the hompage of the website](/assets/two.png)
   
   
  
