@@ -24,6 +24,13 @@
   
   ![this is the hompage of the website](/assets/two.five.png)
   
+  ![this is the hompage of the website](/assets/three.png)
+  ![this is the hompage of the website](/assets/four.png)
+  ![this is the hompage of the website](/assets/five.png)
+  ![this is the hompage of the website](/assets/six.png)
+  ![this is the hompage of the website](/assets/seven.png)
+  ![this is the hompage of the website](/assets/eight.png)
+  
  
   
   
