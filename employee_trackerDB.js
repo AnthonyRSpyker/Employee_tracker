@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
   database: 'employee_trackerDB',
 });
 
-let managers = [];
+
 
 connection.connect((err) => {
     if (err) throw err ;
@@ -31,12 +31,14 @@ const options = () => {
             message: 'What would you like to do?',
             choices: [
                 'View all employees and info',
-                'View department',
-                'View roles',
+                'View Department',
+                'View Roles',
                 'View Employees',
-                'Add employee',
+                'Add Employee',
                 'Remove employee',
                 'Update employee role',
+                'Delete Department',
+                // 'Add Department',
                 'Exit'
             ],
     })
@@ -47,12 +49,12 @@ const options = () => {
                 
                 break;
                 
-            case 'View department':
+            case 'View Department':
                 viewDepartment();
     
                 break;
             
-            case 'View roles':
+            case 'View Roles':
                 viewRole();
         
                 break;
@@ -62,7 +64,7 @@ const options = () => {
             
                 break;
             
-            case 'Add employee':
+            case 'Add Employee':
                 addEmployee();
 
                 break;
@@ -75,6 +77,16 @@ const options = () => {
             case 'Update employee role':
                 updateEmployeeRole();
 
+                break;
+            
+            case 'Delete Department':
+                deleteDepartment();
+
+                break;
+            
+            case 'Add Department':
+                addDepartment();
+    
                 break;
 
             case 'Exit':
@@ -227,7 +239,27 @@ const deleteEmployee = () => {
     }
     
     
-    
+    const deleteDepartment = () => {
+        inquirer.prompt([
+            {
+                name: 'deletedepartment',
+                type: 'input',
+                message: 'What is the department id you want to delete?'
+            }
+        ])
+        .then((answer) => {
+            const query = 'DELETE FROM department WHERE id = ?'
+            connection.query(query, 
+                [
+                    answer.deletedepartment
+                ],
+                (err) => {
+                    if (err) throw err;
+                    console.log("s'all good!")
+                    options();
+                })
+            });
+        }
     
     
     
@@ -242,9 +274,9 @@ const deleteEmployee = () => {
     //     .then((answer) => {
     //         const query = 'INSERT INTO department SET ?'
     //         connection.query(query,
-    //         {
-    //             name: answer.department
-    //         },
+    //         [
+    //             answer.department
+    //         ],
     //         (err) => {
     //             if (err) throw err;
     //                 console.log("s'all good!")

@@ -32,18 +32,19 @@ CREATE TABLE employee(
 
 
 SELECT 
-    role.id,
+    employee.id,
     employee.first_name,
     employee.last_name,
     role.title,
     role.salary,
-    department.name as department_name,
-    employee.manager_id
+    department.name AS department_name,
+    employee.manager_id,
+    employee_w_manager.first_name
 FROM
     employee
         LEFT JOIN
     role ON employee.role_id = role.id
-		LEFT JOIN
-	department ON role.department_id = department.id
-		LEFT JOIN
-	employee employee_w_manager on employee_w_manager.manager_id = employee.id
+        LEFT JOIN
+    department ON role.department_id = department.id
+        LEFT JOIN
+    employee employee_w_manager ON employee_w_manager.manager_id = employee.id
